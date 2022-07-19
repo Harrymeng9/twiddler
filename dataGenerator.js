@@ -52,18 +52,30 @@ var randomMessage = function() {
   return [randomElement(opening), randomElement(verbs), randomElement(objects), randomElement(nouns), randomElement(tags)].join(' ');
 };
 
+var founders = ['shawndrost', 'sharksforcheap', 'mracus', 'douglascalhoun'];
 // generate random tweets on a random schedule
 var generateRandomTweet = function() {
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
   tweet.created_at = new Date();
-  tweet.profilePhotoURL = './assets/img/' + tweet.user + '.png';
+  if (founders.includes(tweet.user)) {
+    tweet.profilePhotoURL = './assets/img/' + tweet.user + '.png';
+  } else {
+    tweet.profilePhotoURL = './assets/img/visitor.png';
+  }
   addTweet(tweet);
 };
 
+var hoursToRemove = 50;
 for (var i = 0; i < 10; i++) {
+  // generating a tweet
   generateRandomTweet();
+
+  // change the tweet's time of creation to a time in the past
+  var timeofCreation = streams.home[i].created_at;
+  timeofCreation.setHours(timeofCreation.getHours() - hoursToRemove);
+  hoursToRemove -= 5;
 }
 
 var scheduleNextTweet = function() {
