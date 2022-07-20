@@ -307,9 +307,9 @@ describe('Tweet UI Component', function() {
     function($timestamp, tweet, _window) {
       if (_window.jQuery.timeago) {
         expect($timestamp, 'timeago should be used to format the timestamp text.\n')
-          .to.contain(_window.jQuery.timeago(tweet.created_at));
+          .to.contain(_window.jQuery.timeago(tweet.createdAt));
       } else {
-        expect($timestamp).to.contain(tweet.created_at);
+        expect($timestamp).to.contain(tweet.createdAt);
       }
     }
   );
@@ -318,7 +318,7 @@ describe('Tweet UI Component', function() {
     var propertyAccessCount = 0;
     var propertySpy = {
       get: function(target, prop) {
-        if (prop === 'created_at') propertyAccessCount++;
+        if (prop === 'createdAt') propertyAccessCount++;
         return target[prop];
       },
     };
@@ -421,7 +421,8 @@ describe('User Feed', function() {
       });
       cy.get('.tweet .username').first().then(function($username) {
         selectedUsername = $username.text();
-        $username.click();
+        var usernameRect = $username.offset();
+        cy.get('body').click(usernameRect.left, usernameRect.top);
       });
     });
 

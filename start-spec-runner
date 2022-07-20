@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
 # check for X server if running on WSL
-if grep -qi microsoft /proc/version; then
+if test -f /proc/version && grep -qi microsoft /proc/version; then
+  if ! command -v xset &>/dev/null; then
+    echo "A required dependency is missing from your system!"
+    echo "Run this command to install it:"
+    echo "    sudo apt-get install x11-xserver-utils"
+    exit 1
+  fi
+  # use xset to check if X server is running
   if ! timeout 1s xset q &>/dev/null; then
-    # X server is not running
     echo "X server is not running! Run XLaunch from Windows and try again."
     exit 1
   fi
