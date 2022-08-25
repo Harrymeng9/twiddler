@@ -1,13 +1,83 @@
 /* These CSS rules apply to the <html>, <body>, and <div id="app"> HTML elements in index.html */
-html, body, #app {
+html,
+body,
+#app {
   min-height: 100vh;
+  margin: 100;
+}
+
+
+h1 {
+  color: rgb(9, 78, 32);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 50px;
   margin: 0;
 }
+
 
 /* Continue building out the CSS styling for your Twiddler app below! We got you started by
 providing a space for you to apply styles to your app's outermost HTML element - the #app itself. */
 
 #app {
-  background-color: green;
-  color: yellow;
+  background: #cbe2c1;
+  background: -webkit-linear-gradient(to right, #a1d3b0, #f6f1d3);
+  background: -moz-linear-gradient(to right, #a1d3b0, #f6f1d3);
+  background: linear-gradient(to right, #a1d3b0, #f6f1d3);
+  color: rgb(8, 47, 43);
+  text-align: center;
+
+}
+
+.comment:hover,
+.retweet:hover,
+.like:hover,
+.share:hover {
+  color: rgb(144, 142, 30);
+}
+
+#update-feed {
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid rgb(73, 99, 19);
+  height: 25px;
+  margin: 20px;
+}
+
+#feed {
+  text-align: center;
+  /* width:50%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.profile-photo {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+}
+
+.tweet {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-bottom: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: thin;
+  width: 40%;
+  background-color: #edf6d386;
+}
+
+.icon {
+  padding: 10px;
+
+}
+
+.comment,
+.retweet,
+.like,
+.share {
+  margin-left: 20px;
+  margin-right: 20px;
 }
